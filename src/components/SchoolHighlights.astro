@@ -42,40 +42,41 @@ const icons: Record<Highlight['icon'], string> = {
 
 <section class="bg-white" aria-label="School highlights">
   <ul
-    class="mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-4 py-8 sm:px-6 lg:grid-cols-4 lg:gap-y-0 lg:py-10"
+    class="mx-auto grid max-w-7xl grid-cols-1 gap-y-6 px-4 py-8 sm:grid-cols-2 sm:gap-y-8 sm:px-6 lg:grid-cols-4 lg:gap-y-0 lg:py-10"
   >
     {
       highlights.map((item) => (
-        <li class="flex flex-col gap-3 px-2 sm:flex-row sm:gap-4 sm:px-6 lg:border-l lg:border-navy/10 lg:first:border-l-0">
-          <svg
-            class="size-10 shrink-0 text-maroon sm:size-12"
-            viewBox="0 0 48 48"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d={icons[item.icon]} />
-          </svg>
-          <div>
-            <p class="leading-tight font-bold text-navy">
-              {item.lines.map((line) => (
-                <span
-                  class:list={[
-                    'block',
-                    line.large ? 'text-2xl' : 'text-lg sm:text-xl',
-                  ]}
-                >
-                  {line.text}
-                </span>
-              ))}
-            </p>
-            <p class="mt-1.5 text-xs leading-relaxed text-navy/65 sm:text-sm">
-              {item.description}
-            </p>
-          </div>
+        <li class="grid grid-cols-[auto_1fr] content-start items-center gap-x-3 gap-y-1 px-0 sm:gap-x-4 sm:gap-y-2 sm:px-6 lg:border-l lg:border-navy/10 lg:first:border-l-0">
+          <!-- Icon box is sized to match the two-line heading beside it -->
+          <span class="flex size-12 items-center justify-center rounded-md bg-maroon text-white sm:size-14">
+            <svg
+              class="size-6 sm:size-7"
+              viewBox="0 0 48 48"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d={icons[item.icon]} />
+            </svg>
+          </span>
+          <p class="leading-tight font-bold text-navy">
+            {item.lines.map((line) => (
+              <span
+                class:list={[
+                  'mr-1.5 inline last:mr-0 sm:mr-0 sm:block',
+                  line.large ? 'text-2xl' : 'text-lg sm:text-xl',
+                ]}
+              >
+                {line.text}
+              </span>
+            ))}
+          </p>
+          <p class="col-start-2 text-xs leading-relaxed text-navy/65 sm:text-sm">
+            {item.description}
+          </p>
         </li>
       ))
     }
