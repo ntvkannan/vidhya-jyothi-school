@@ -1,5 +1,5 @@
 {
-  "name": "callous-centauri",
+  "name": "vidhya-jyothi-school",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -12,9 +12,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.3.5"
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.5",
+    "gsap": "^3.15.0",
+    "tailwindcss": "^4.3.3"
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "prettier": "^3.9.9",
+    "prettier-plugin-astro": "^1.1.0"
   }
 }

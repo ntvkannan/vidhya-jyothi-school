@@ -1,0 +1,83 @@
+---
+type Highlight = {
+  icon: 'calendar' | 'building' | 'people' | 'book';
+  lines: { text: string; large?: boolean }[];
+  description: string;
+};
+
+const highlights: Highlight[] = [
+  {
+    icon: 'calendar',
+    lines: [{ text: 'Since' }, { text: '1982', large: true }],
+    description: 'A legacy of quality education in Bengaluru',
+  },
+  {
+    icon: 'building',
+    lines: [{ text: '2' }, { text: 'Campuses' }],
+    description: 'BTM Layout & Hongasandra',
+  },
+  {
+    icon: 'people',
+    lines: [{ text: 'Nursery to' }, { text: 'High School' }],
+    description: 'Complete school education journey',
+  },
+  {
+    icon: 'book',
+    lines: [{ text: 'State Board' }, { text: 'Curriculum' }],
+    description: 'Recognised and followed by the Karnataka State Board',
+  },
+];
+
+// Simple outline icons, 48x48 viewBox, drawn with currentColor.
+const icons: Record<Highlight['icon'], string> = {
+  calendar:
+    'M8 12h32a2 2 0 0 1 2 2v26a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V14a2 2 0 0 1 2-2Zm0 10h34M16 6v10M32 6v10M14 30h4M22 30h4M30 30h4M14 36h4M22 36h4',
+  building:
+    'M6 42V24h10M42 42V24H32M16 42V18l8-8 8 8v24M24 10V4M21 6h6M20 42v-8h8v8M21 22h6M21 28h6M2 42h44',
+  people:
+    'M24 22a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm-9 18v-4a9 9 0 0 1 18 0v4M9 24a5 5 0 1 1 3-9M39 24a5 5 0 1 0-3-9M4 36v-3a6 6 0 0 1 6-6M44 36v-3a6 6 0 0 0-6-6',
+  book: 'M24 12c-4-3-10-4-18-4v28c8 0 14 1 18 4m0-28c4-3 10-4 18-4v28c-8 0-14 1-18 4m0-28v28',
+};
+---
+
+<section class="bg-white" aria-label="School highlights">
+  <ul
+    class="mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-4 py-8 sm:px-6 lg:grid-cols-4 lg:gap-y-0 lg:py-10"
+  >
+    {
+      highlights.map((item) => (
+        <li class="flex flex-col gap-3 px-2 sm:flex-row sm:gap-4 sm:px-6 lg:border-l lg:border-navy/10 lg:first:border-l-0">
+          <svg
+            class="size-10 shrink-0 text-maroon sm:size-12"
+            viewBox="0 0 48 48"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d={icons[item.icon]} />
+          </svg>
+          <div>
+            <p class="leading-tight font-bold text-navy">
+              {item.lines.map((line) => (
+                <span
+                  class:list={[
+                    'block',
+                    line.large ? 'text-2xl' : 'text-lg sm:text-xl',
+                  ]}
+                >
+                  {line.text}
+                </span>
+              ))}
+            </p>
+            <p class="mt-1.5 text-xs leading-relaxed text-navy/65 sm:text-sm">
+              {item.description}
+            </p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>

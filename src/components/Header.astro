@@ -147,10 +147,10 @@ const pinPath =
 
 <header class="sticky top-0 z-50 bg-white shadow-sm">
   <!-- Main header -->
-  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+  <div class="mx-auto flex max-w-[88rem] items-center justify-between gap-4 px-4 py-3 sm:px-6 nav:gap-5">
     <a
       href="/"
-      class="flex shrink-0 items-center gap-3"
+      class="flex shrink-0 items-center gap-3 nav:w-[17.5rem]"
       aria-label="Vidhya Jyothi School home"
     >
       <img
@@ -161,18 +161,18 @@ const pinPath =
         class="size-12 shrink-0 object-contain sm:size-14"
       />
       <span class="leading-tight">
-        <span class="block text-lg font-extrabold tracking-tight text-navy sm:text-xl">
+        <span class="block text-base font-bold tracking-tight whitespace-nowrap text-navy sm:text-lg">
           VIDHYA JYOTHI SCHOOL
         </span>
-        <span class="mt-0.5 block text-xs font-medium text-maroon sm:text-sm">
+        <span class="mt-1 block text-[10px] font-normal tracking-wide whitespace-nowrap text-maroon sm:text-xs">
           Knowledge <span class="text-gold">•</span> Values{' '}
           <span class="text-gold">•</span> Character
         </span>
       </span>
     </a>
 
-    <nav class="hidden xl:block" aria-label="Main navigation">
-      <ul class="flex items-center gap-6 text-sm font-semibold text-navy">
+    <nav class="hidden nav:block" aria-label="Main navigation">
+      <ul class="flex items-center gap-4 text-sm font-semibold text-navy 2xl:gap-6">
         {navItems.map((item) => (
           <li class="group relative">
             <a
@@ -248,7 +248,7 @@ const pinPath =
       <button
         type="button"
         id="menu-toggle"
-        class="inline-flex size-10 items-center justify-center rounded-md text-navy hover:bg-navy/5 xl:hidden"
+        class="inline-flex size-10 items-center justify-center rounded-md text-navy hover:bg-navy/5 nav:hidden"
         aria-expanded="false"
         aria-controls="mobile-menu"
         aria-label="Open menu"
@@ -271,7 +271,7 @@ const pinPath =
   <!-- Mobile / tablet menu -->
   <div
     id="mobile-menu"
-    class="hidden max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-navy/10 bg-white xl:hidden"
+    class="hidden max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-navy/10 bg-white nav:hidden"
   >
     <nav
       class="mx-auto max-w-7xl px-4 py-2 sm:px-6"

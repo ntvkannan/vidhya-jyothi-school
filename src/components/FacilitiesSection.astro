@@ -1,0 +1,67 @@
+---
+const facilities = [
+  {
+    name: 'Library',
+    image: '/images/facilities/library.webp',
+    alt: 'A student reading in the library',
+  },
+  {
+    name: 'Science Lab',
+    image: '/images/facilities/science-lab.webp',
+    alt: 'Students working in the science lab',
+  },
+  {
+    name: 'Computer Lab',
+    image: '/images/facilities/computer-lab.webp',
+    alt: 'Students using computers in the computer lab',
+  },
+  {
+    name: 'Music Room',
+    image: '/images/facilities/music-room.webp',
+    alt: 'A student playing an instrument in the music room',
+  },
+  {
+    name: 'Sports Facilities',
+    image: '/images/facilities/sports-facilities.webp',
+    alt: 'The school sports facilities',
+  },
+];
+---
+
+<section class="bg-white" aria-labelledby="facilities-heading">
+  <div class="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:pb-14">
+    <h2
+      id="facilities-heading"
+      class="text-2xl font-extrabold tracking-tight text-navy sm:text-3xl"
+    >
+      Our Facilities
+    </h2>
+    <div class="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+      <div class="h-1 w-12 shrink-0 rounded-full bg-gold"></div>
+      <p class="text-sm text-navy/75 sm:text-base">
+        A safe and well-equipped campus with modern facilities for holistic
+        development.
+      </p>
+    </div>
+
+    <ul
+      class="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:gap-5"
+    >
+      {
+        facilities.map((facility) => (
+          <li class="overflow-hidden rounded-lg border border-navy/10 bg-white shadow-sm">
+            <img
+              src={facility.image}
+              alt={facility.alt}
+              loading="lazy"
+              class="aspect-[4/3] w-full object-cover"
+            />
+            <h3 class="px-3 py-3 text-base font-bold text-navy">
+              {facility.name}
+            </h3>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,154 @@
+---
+// Campus addresses, phone numbers and emails per campus are not yet approved,
+// so only the campus locality and a link to its contact page are shown.
+import { navItems } from '../data/navigation';
+
+const contactPages = navItems.find((item) => item.label === 'Contact Us')!
+  .children!;
+const campuses = [
+  { name: 'BTM Layout Campus', place: 'BTM Layout', href: contactPages[0].href },
+  { name: 'Hongasandra Campus', place: 'Hongasandra', href: contactPages[1].href },
+];
+
+// Quick links reuse the main navigation's section pages.
+const quickLinks = navItems.filter((item) =>
+  [
+    'About Us',
+    'Academics',
+    'Student Life',
+    'Admissions',
+    'News & Events',
+    'Contact Us',
+  ].includes(item.label),
+);
+
+const pinPath =
+  'M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z';
+
+const colClass = 'xl:border-l xl:border-navy/10 xl:pl-8';
+const headingClass = 'text-sm font-bold text-navy';
+---
+
+<footer class="border-t border-navy/10 bg-white">
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+    <div
+      class="grid gap-8 sm:grid-cols-2 xl:grid-cols-[1.3fr_1fr_1fr_0.8fr_0.8fr] xl:gap-8"
+    >
+      <!-- Branding -->
+      <div class="sm:col-span-2 xl:col-span-1">
+        <a
+          href="/"
+          class="flex items-center gap-3"
+          aria-label="Vidhya Jyothi School home"
+        >
+          <img
+            src="/images/logo/vidhya-jyothi-school-logo.png"
+            alt="Vidhya Jyothi School"
+            width="110"
+            height="110"
+            loading="lazy"
+            class="size-14 shrink-0 object-contain"
+          />
+          <span class="leading-tight">
+            <span class="block text-lg font-extrabold tracking-tight text-navy">
+              VIDHYA JYOTHI SCHOOL
+            </span>
+            <span class="mt-0.5 block text-xs font-medium text-maroon">
+              Knowledge <span class="text-gold">•</span> Values{' '}
+              <span class="text-gold">•</span> Character
+            </span>
+          </span>
+        </a>
+      </div>
+
+      <!-- Campuses -->
+      {
+        campuses.map((campus) => (
+          <div class={colClass}>
+            <h2 class={headingClass}>{campus.name}</h2>
+            <p class="mt-3 flex items-center gap-2 text-sm text-navy/70">
+              <svg
+                class="size-4 shrink-0 text-maroon"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d={pinPath} />
+              </svg>
+              {campus.place}
+            </p>
+            <a
+              href={campus.href}
+              class="mt-2 inline-block text-sm font-semibold text-maroon hover:underline"
+            >
+              Contact details
+            </a>
+          </div>
+        ))
+      }
+
+      <!-- Quick links -->
+      <nav class={colClass} aria-labelledby="footer-quick-links">
+        <h2 id="footer-quick-links" class={headingClass}>Quick Links</h2>
+        <ul class="mt-3 space-y-1.5 text-sm text-navy/70">
+          {
+            quickLinks.map((link) => (
+              <li>
+                <a href={link.href} class="hover:text-maroon">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Social: profile URLs are not yet approved, so these are non-linked placeholders -->
+      <div class={colClass}>
+        <h2 class={headingClass}>Follow Us</h2>
+        <ul class="mt-3 flex gap-3">
+          <li>
+            <span
+              class="flex size-10 items-center justify-center rounded-full bg-[#1877f2] text-white"
+              role="img"
+              aria-label="Facebook (link coming soon)"
+            >
+              <svg class="size-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.500 21v-7.500h2.500l.5-3h-3V8.600c0-.9.300-1.600 1.600-1.600H16.600V4.300C16.300 4.300 15.400 4.200 14.400 4.200c-2.300 0-3.900 1.400-3.900 4v2.300H8v3h2.500V21h3Z"></path></svg>
+            </span>
+          </li>
+          <li>
+            <span
+              class="flex size-10 items-center justify-center rounded-full bg-[#d6249f] text-white"
+              role="img"
+              aria-label="Instagram (link coming soon)"
+            >
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4.500"></rect><circle cx="12" cy="12" r="3.700"></circle><circle cx="17" cy="7" r="0.600" fill="currentColor"></circle></svg>
+            </span>
+          </li>
+          <li>
+            <span
+              class="flex size-10 items-center justify-center rounded-full bg-[#ff0000] text-white"
+              role="img"
+              aria-label="YouTube (link coming soon)"
+            >
+              <svg class="size-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.500 8.500v7l6-3.500-6-3.500Z"></path></svg>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div
+      class="mt-8 flex flex-col gap-2 border-t border-navy/10 pt-5 text-sm text-navy/65 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>© 2025 Vidhya Jyothi School. All rights reserved.</p>
+      <!-- Privacy Policy and Sitemap pages do not exist yet, so these are plain text, not links -->
+      <p>
+        Privacy Policy
+        <span class="mx-1.5 text-navy/30" aria-hidden="true">|</span>
+        Sitemap
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,65 @@
+---
+const activities = [
+  {
+    title: 'Sports',
+    description: 'Encouraging fitness, teamwork and sportsmanship.',
+    image: '/images/student-life/sports.webp',
+    alt: 'Students playing football on a sports field',
+  },
+  {
+    title: 'Cultural Activities',
+    description: 'Music, dance, arts and celebrations that inspire creativity.',
+    image: '/images/student-life/cultural-activities.webp',
+    alt: 'Students performing a classical dance',
+  },
+  {
+    title: 'Clubs & Co-curricular',
+    description: 'Various clubs to explore and develop new skills.',
+    image: '/images/student-life/clubs-co-curricular.webp',
+    alt: 'Students working together on an activity',
+  },
+  {
+    title: 'Student Leadership',
+    description: 'Opportunities to build confidence and leadership skills.',
+    image: '/images/student-life/student-leadership.webp',
+    alt: 'A student speaking at a microphone',
+  },
+];
+---
+
+<section class="bg-white" aria-labelledby="student-life-heading">
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-14">
+    <h2
+      id="student-life-heading"
+      class="text-2xl font-extrabold tracking-tight text-navy sm:text-3xl"
+    >
+      Student Life & Activities
+    </h2>
+    <div class="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+      <div class="h-1 w-12 shrink-0 rounded-full bg-gold"></div>
+      <p class="text-sm text-navy/75 sm:text-base">
+        Beyond the classroom, we offer a wide range of activities to help
+        students discover their talents and interests.
+      </p>
+    </div>
+
+    <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+      {
+        activities.map((activity) => (
+          <li>
+            <img
+              src={activity.image}
+              alt={activity.alt}
+              loading="lazy"
+              class="aspect-[16/10] w-full rounded-lg object-cover"
+            />
+            <h3 class="mt-4 text-lg font-bold text-navy">{activity.title}</h3>
+            <p class="mt-1.5 text-sm leading-relaxed text-navy/70">
+              {activity.description}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,62 @@
+---
+import { announcements } from '../data/announcements';
+---
+
+<aside
+  class="rounded-xl border-2 border-maroon bg-white p-5 shadow-lg"
+  aria-labelledby="announcements-heading"
+>
+  <div class="flex items-center justify-between gap-3">
+    <h2
+      id="announcements-heading"
+      class="flex items-center gap-2 text-lg font-bold text-navy"
+    >
+      <svg
+        class="size-6 text-gold"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M12 2a1.5 1.5 0 0 1 1.5 1.5v.7A6.5 6.5 0 0 1 18.5 10.5v3.2l1.7 2.6a1 1 0 0 1-.84 1.55H4.64a1 1 0 0 1-.84-1.55l1.7-2.6v-3.2a6.5 6.5 0 0 1 5-6.3v-.7A1.5 1.5 0 0 1 12 2Zm-2.5 17h5a2.5 2.5 0 0 1-5 0Z"></path>
+      </svg>
+      Announcements
+    </h2>
+    <a
+      href="/news-events/news"
+      class="flex items-center gap-1 text-sm font-semibold whitespace-nowrap text-maroon hover:underline"
+    >
+      View All
+      <svg
+        class="size-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M5 12h14M13 6l6 6-6 6"></path>
+      </svg>
+    </a>
+  </div>
+
+  <ul class="mt-4 divide-y divide-navy/10">
+    {
+      announcements.map((item) => (
+        <li class="flex items-center gap-3 py-3">
+          <div class="flex size-12 shrink-0 flex-col items-center justify-center rounded-md bg-gold/15 leading-none">
+            <span class="text-lg font-bold text-maroon">{item.day}</span>
+            <span class="mt-0.5 text-xs font-medium text-maroon">
+              {item.month}
+            </span>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-navy">{item.title}</p>
+            <p class="mt-0.5 text-xs text-navy/65">{item.description}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</aside>

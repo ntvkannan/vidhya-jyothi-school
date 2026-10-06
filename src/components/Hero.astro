@@ -1,0 +1,73 @@
+---
+import AnnouncementPanel from './AnnouncementPanel.astro';
+
+// Temporary photo — replace the file (or this path) with the school's own photograph.
+const heroImage = '/images/hero/hero-student.webp';
+---
+
+<section
+  class="flex flex-col bg-cream lg:relative lg:grid lg:min-h-[28rem] lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-center lg:gap-8 lg:overflow-hidden lg:px-[max(1.5rem,calc((100%_-_80rem)/2_+_1.5rem))] lg:py-8"
+>
+  <div
+    class="order-1 px-4 pt-10 pb-6 sm:px-6 sm:pt-12 lg:relative lg:z-10 lg:p-0"
+  >
+    <p
+      class="text-xs font-bold tracking-[0.15em] text-maroon motion-safe:animate-reveal sm:text-sm"
+    >
+      VIDHYA JYOTHI SCHOOL
+    </p>
+    <h1
+      class="mt-3 text-4xl leading-[1.1] font-extrabold tracking-tight motion-safe:animate-reveal sm:text-5xl xl:text-6xl"
+    >
+      <span class="block text-navy">Learning Today.</span>
+      <span class="block text-maroon">Leading Tomorrow.</span>
+    </h1>
+    <p
+      class="mt-5 max-w-md text-base text-navy/80 motion-safe:animate-reveal sm:text-lg"
+    >
+      Nurturing young minds with knowledge, values and skills for a brighter
+      future.
+    </p>
+    <div class="mt-7 flex flex-wrap gap-3 motion-safe:animate-reveal">
+      <a
+        href="/admissions/admission-process"
+        class="inline-flex items-center gap-2 rounded-md bg-gold px-5 py-3 text-sm font-bold text-navy hover:brightness-95"
+      >
+        Explore Admissions
+        <svg
+          class="size-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14M13 6l6 6-6 6"></path>
+        </svg>
+      </a>
+      <a
+        href="/about/our-story"
+        class="inline-flex items-center rounded-md border-2 border-navy bg-white px-5 py-3 text-sm font-bold text-navy hover:bg-navy/5"
+      >
+        Discover Our School
+      </a>
+    </div>
+  </div>
+
+  <img
+    src={heroImage}
+    alt="A smiling student looking up in a classroom"
+    width="2070"
+    height="760"
+    fetchpriority="high"
+    class="order-2 h-56 w-full object-cover object-[75%_center] sm:h-72 lg:absolute lg:inset-y-0 lg:right-[20%] lg:h-full lg:w-4/5 lg:[mask-image:linear-gradient(to_right,transparent,black_30%)]"
+  />
+
+  <div
+    class="order-3 px-4 py-6 motion-safe:animate-reveal [animation-delay:150ms] sm:px-6 lg:relative lg:z-10 lg:p-0"
+  >
+    <AnnouncementPanel />
+  </div>
+</section>
