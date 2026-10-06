@@ -1,9 +1,10 @@
 ---
+import { withBase, stripBase } from '../utils/url';
 import { navItems } from '../data/navigation';
 import { campuses } from '../data/campuses';
 
 // Active state is derived from the current URL, so no page sets it by hand.
-const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const pathname = stripBase(Astro.url.pathname);
 const isExact = (href: string) => pathname === href;
 const isSection = (href: string) =>
   href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(href + '/');
@@ -149,12 +150,12 @@ const pinPath =
   <!-- Main header -->
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 xl:gap-5">
     <a
-      href="/"
+      href={withBase('/')}
       class="flex shrink-0 items-center gap-3 xl:w-[17.5rem]"
       aria-label="Vidhya Jyothi School home"
     >
       <img
-        src="/images/logo/vidhya-jyothi-school-logo.png"
+        src={withBase('/images/logo/vidhya-jyothi-school-logo.png')}
         alt="Vidhya Jyothi School"
         width="110"
         height="110"
@@ -176,7 +177,7 @@ const pinPath =
         {navItems.map((item, index) => (
           <li class="group relative">
             <a
-              href={item.href}
+              href={withBase(item.href)}
               aria-current={
                 isExact(item.href) ? 'page' : isSection(item.href) ? 'true' : undefined
               }
@@ -214,7 +215,7 @@ const pinPath =
                 {item.children.map((child) => (
                   <li>
                     <a
-                      href={child.href}
+                      href={withBase(child.href)}
                       aria-current={isExact(child.href) ? 'page' : undefined}
                       class:list={[
                         'block px-4 py-2 text-sm font-medium whitespace-nowrap hover:bg-gold/15 hover:text-maroon focus-visible:bg-gold/15 focus-visible:text-maroon',
@@ -303,7 +304,7 @@ const pinPath =
                   {item.children.map((child) => (
                     <li>
                       <a
-                        href={child.href}
+                        href={withBase(child.href)}
                         aria-current={isExact(child.href) ? 'page' : undefined}
                         class:list={[
                           'block py-2 text-sm font-medium hover:text-maroon',
@@ -318,7 +319,7 @@ const pinPath =
               </>
             ) : (
               <a
-                href={item.href}
+                href={withBase(item.href)}
                 aria-current={isExact(item.href) ? 'page' : undefined}
                 class:list={[
                   'block py-3',

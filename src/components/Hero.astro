@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../utils/url';
 import AnnouncementPanel from './AnnouncementPanel.astro';
 
 // Temporary photo — replace the file (or this path) with the school's own photograph.
@@ -30,7 +31,7 @@ const heroImage = '/images/hero/hero-student.webp';
     </p>
     <div class="mt-7 flex flex-wrap gap-3 motion-safe:animate-reveal">
       <a
-        href="/admissions/admission-process"
+        href={withBase('/admissions/admission-process')}
         class="inline-flex items-center gap-2 rounded-md bg-gold px-5 py-3 text-sm font-bold text-navy hover:brightness-95"
       >
         Explore Admissions
@@ -48,7 +49,7 @@ const heroImage = '/images/hero/hero-student.webp';
         </svg>
       </a>
       <a
-        href="/about/our-story"
+        href={withBase('/about/our-story')}
         class="inline-flex items-center rounded-md border-2 border-navy bg-white px-5 py-3 text-sm font-bold text-navy hover:bg-navy/5"
       >
         Discover Our School
@@ -57,7 +58,7 @@ const heroImage = '/images/hero/hero-student.webp';
   </div>
 
   <img
-    src={heroImage}
+    src={withBase(heroImage)}
     alt="A smiling student looking up in a classroom"
     width="2070"
     height="760"

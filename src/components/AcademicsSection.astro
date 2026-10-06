@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../utils/url';
 // Replace the file at this path to update the photograph.
 const image = '/images/academics/academics-curriculum-students.webp';
 
@@ -62,7 +63,7 @@ const points = [
     </ul>
 
     <a
-      href="/academics/curriculum"
+      href={withBase('/academics/curriculum')}
       class="mt-7 inline-flex w-fit items-center gap-2 rounded-md bg-gold px-5 py-3 text-sm font-bold text-navy hover:brightness-95"
     >
       Know More
@@ -83,7 +84,7 @@ const points = [
 
   <img
     data-reveal
-    src={image}
+    src={withBase(image)}
     alt="Students studying together in a classroom"
     width="600"
     height="402"

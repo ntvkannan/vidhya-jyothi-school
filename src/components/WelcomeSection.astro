@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../utils/url';
 // Replace the file at this path to update the photograph.
 const principalImage = '/images/about/principal.webp';
 ---
@@ -6,7 +7,7 @@ const principalImage = '/images/about/principal.webp';
 <section class="bg-cream" aria-labelledby="welcome-heading">
   <div data-reveal-stagger class="mx-auto grid max-w-7xl items-center gap-8 px-4 py-10 sm:px-6 md:grid-cols-[14rem_1fr] md:gap-10 lg:grid-cols-[17rem_1fr_20rem] lg:gap-12 lg:py-14">
     <img
-      src={principalImage}
+      src={withBase(principalImage)}
       alt="Principal of Vidhya Jyothi School"
       width="250"
       height="300"

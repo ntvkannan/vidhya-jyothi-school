@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../utils/url';
 // PLACEHOLDER: the student-group photograph is not yet available.
 // Set this to the image path once the asset exists; the placeholder box is then replaced.
 const groupImage: string | null = null;
@@ -12,7 +13,7 @@ const groupImage: string | null = null;
     {
       groupImage ? (
         <img
-          src={groupImage}
+          src={withBase(groupImage)}
           alt="Students of Vidhya Jyothi School"
           loading="lazy"
           class="h-40 w-full rounded-lg object-cover md:h-48"
@@ -44,7 +45,7 @@ const groupImage: string | null = null;
       </p>
       <div class="mt-6 flex flex-col gap-3 sm:flex-row">
         <a
-          href="/admissions/admission-enquiry"
+          href={withBase('/admissions/admission-enquiry')}
           class="inline-flex items-center justify-center gap-2 rounded-md bg-gold px-6 py-3 text-sm font-bold text-navy hover:brightness-95"
         >
           Apply for Admission
@@ -62,7 +63,7 @@ const groupImage: string | null = null;
           </svg>
         </a>
         <a
-          href="/contact/btm-campus"
+          href={withBase('/contact/btm-campus')}
           class="inline-flex items-center justify-center rounded-md border-2 border-white px-6 py-3 text-sm font-bold text-white hover:bg-white/10"
         >
           Contact Us

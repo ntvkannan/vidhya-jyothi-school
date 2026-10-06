@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../utils/url';
 // Campus addresses, phone numbers and emails per campus are not yet approved,
 // so only the campus locality and a link to its contact page are shown.
 import { navItems } from '../data/navigation';
@@ -37,12 +38,12 @@ const headingClass = 'text-sm font-bold text-navy';
       <!-- Branding -->
       <div class="sm:col-span-2 xl:col-span-1">
         <a
-          href="/"
+          href={withBase('/')}
           class="flex items-center gap-3"
           aria-label="Vidhya Jyothi School home"
         >
           <img
-            src="/images/logo/vidhya-jyothi-school-logo.png"
+            src={withBase('/images/logo/vidhya-jyothi-school-logo.png')}
             alt="Vidhya Jyothi School"
             width="110"
             height="110"
@@ -78,7 +79,7 @@ const headingClass = 'text-sm font-bold text-navy';
               {campus.place}
             </p>
             <a
-              href={campus.href}
+              href={withBase(campus.href)}
               class="mt-2 inline-block text-sm font-semibold text-maroon hover:underline"
             >
               Contact details
@@ -94,7 +95,7 @@ const headingClass = 'text-sm font-bold text-navy';
           {
             quickLinks.map((link) => (
               <li>
-                <a href={link.href} class="hover:text-maroon">
+                <a href={withBase(link.href)} class="hover:text-maroon">
                   {link.label}
                 </a>
               </li>

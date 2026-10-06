@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../utils/url';
 interface Props {
   title: string;
 }
@@ -20,7 +21,7 @@ const { title } = Astro.props;
       This page is currently being prepared. Please check back soon.
     </p>
     <a
-      href="/"
+      href={withBase('/')}
       class="mt-8 inline-flex items-center rounded-md border-2 border-navy px-5 py-2.5 text-sm font-bold text-navy hover:bg-navy/5"
     >
       Back to Home
