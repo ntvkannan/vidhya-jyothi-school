@@ -1,0 +1,452 @@
+---
+import { navItems, ctaLink } from '../data/navigation';
+import { campuses } from '../data/campuses';
+
+// Active state is derived from the current URL, so no page sets it by hand.
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isExact = (href: string) => pathname === href;
+const isSection = (href: string) =>
+  href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(href + '/');
+const chevronPath = 'M6 9l6 6 6-6';
+const pinPath =
+  'M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z';
+---
+
+<!-- Top information strip: scrolls away; only the main header below is sticky -->
+  <div class="relative z-[60] hidden bg-maroon text-xs text-white md:block">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
+      <div class="flex items-center gap-x-4">
+        <span class="flex items-center gap-1.5">
+          <svg
+            class="size-3.5 text-gold"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d={pinPath}></path>
+          </svg>
+          Our Campuses:
+        </span>
+        {campuses.map((campus) => (
+          <span class="relative" data-campus>
+            <button
+              type="button"
+              data-campus-trigger
+              class="flex items-center gap-1.5 rounded-sm hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              aria-expanded="false"
+              aria-controls={`campus-panel-${campus.id}`}
+            >
+              <svg
+                class="size-3.5 text-gold"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d={pinPath}></path>
+              </svg>
+              {campus.shortName}
+              <svg
+                class="size-3 transition-transform"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d={chevronPath}></path>
+              </svg>
+            </button>
+            <div
+              id={`campus-panel-${campus.id}`}
+              role="group"
+              aria-label={campus.name}
+              class="absolute top-full left-0 z-10 mt-2 hidden w-72 rounded-md border border-navy/10 bg-white p-4 text-left text-sm text-navy shadow-lg"
+            >
+              <h2 class="text-sm font-bold text-navy">{campus.name}</h2>
+              <ul class="mt-3 space-y-2.5 text-xs leading-relaxed text-navy/80">
+                <li class="flex gap-2">
+                  <svg class="mt-0.5 size-3.5 shrink-0 text-maroon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d={pinPath}></path>
+                  </svg>
+                  <span>
+                    <span class="sr-only">Address: </span>
+                    {campus.address.map((line) => (
+                      <span class="block">{line}</span>
+                    ))}
+                    <span class="sr-only">Location: </span>
+                    <span class="block text-navy/60">{campus.location}</span>
+                  </span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="size-3.5 shrink-0 text-maroon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1l-2.22 2.23Z"></path>
+                  </svg>
+                  <a href={`tel:${campus.phone.replace(/\s+/g, '')}`} class="hover:text-maroon">
+                    <span class="sr-only">Phone: </span>{campus.phone}
+                  </a>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="size-3.5 shrink-0 text-maroon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm8 7.2L4.4 6.5v.1L12 12l7.6-5.4v-.1L12 11.2Z"></path>
+                  </svg>
+                  <a href={`mailto:${campus.email}`} class="break-all hover:text-maroon">
+                    <span class="sr-only">Email: </span>{campus.email}
+                  </a>
+                </li>
+              </ul>
+              <a
+                href={campus.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-maroon hover:underline"
+              >
+                View on Map
+                <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6"></path>
+                </svg>
+                <span class="sr-only">(opens in a new tab)</span>
+              </a>
+            </div>
+          </span>
+        ))}
+      </div>
+      <p class="flex items-center gap-x-6">
+        <a
+          href="tel:+918026684791"
+          class="flex items-center gap-1.5 hover:text-gold"
+        >
+          <svg
+            class="size-3.5 text-gold"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1l-2.22 2.23Z"></path>
+          </svg>
+          +91 80 2668 4791
+        </a>
+        <a
+          href="mailto:support@vidhyajyothischool.org"
+          class="hidden items-center gap-1.5 hover:text-gold lg:flex"
+        >
+          <svg
+            class="size-3.5 text-gold"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm8 7.2L4.4 6.5v.1L12 12l7.6-5.4v-.1L12 11.2Z"></path>
+          </svg>
+          support@vidhyajyothischool.org
+        </a>
+      </p>
+    </div>
+  </div>
+
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+  <!-- Main header -->
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+    <a
+      href="/"
+      class="flex shrink-0 items-center gap-3"
+      aria-label="Vidhya Jyothi School home"
+    >
+      <img
+        src="/images/logo/vidhya-jyothi-school-logo.png"
+        alt="Vidhya Jyothi School"
+        width="110"
+        height="110"
+        class="size-12 shrink-0 object-contain sm:size-14"
+      />
+      <span class="leading-tight">
+        <span class="block text-lg font-extrabold tracking-tight text-navy sm:text-xl">
+          VIDHYA JYOTHI SCHOOL
+        </span>
+        <span class="mt-0.5 block text-xs font-medium text-maroon sm:text-sm">
+          Knowledge <span class="text-gold">•</span> Values{' '}
+          <span class="text-gold">•</span> Character
+        </span>
+      </span>
+    </a>
+
+    <nav class="hidden xl:block" aria-label="Main navigation">
+      <ul class="flex items-center gap-6 text-sm font-semibold text-navy">
+        {navItems.map((item) => (
+          <li class="group relative">
+            <a
+              href={item.href}
+              aria-current={
+                isExact(item.href) ? 'page' : isSection(item.href) ? 'true' : undefined
+              }
+              class:list={[
+                'flex items-center gap-1 border-b-2 py-2 whitespace-nowrap transition-colors group-hover:text-maroon group-focus-within:text-maroon',
+                isSection(item.href)
+                  ? 'border-gold text-maroon'
+                  : 'border-transparent',
+              ]}
+            >
+              {item.label}
+              {item.children && (
+                <svg
+                  class="size-3.5 transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d={chevronPath} />
+                </svg>
+              )}
+            </a>
+            {item.children && (
+              <ul class="invisible absolute top-full left-0 z-50 min-w-56 border border-navy/10 bg-white py-1.5 opacity-0 shadow-lg group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                {item.children.map((child) => (
+                  <li>
+                    <a
+                      href={child.href}
+                      aria-current={isExact(child.href) ? 'page' : undefined}
+                      class:list={[
+                        'block px-4 py-2 text-sm font-medium whitespace-nowrap hover:bg-gold/15 hover:text-maroon focus-visible:bg-gold/15 focus-visible:text-maroon',
+                        isExact(child.href) ? 'text-maroon' : 'text-navy',
+                      ]}
+                    >
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href={ctaLink.href}
+        class="hidden items-center gap-2 rounded-md bg-gold px-4 py-2.5 text-sm font-bold whitespace-nowrap text-navy hover:brightness-95 sm:inline-flex"
+      >
+        Admissions 2026–27
+        <svg
+          class="size-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14M13 6l6 6-6 6"></path>
+        </svg>
+      </a>
+      <button
+        type="button"
+        id="menu-toggle"
+        class="inline-flex size-10 items-center justify-center rounded-md text-navy hover:bg-navy/5 xl:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+      >
+        <svg
+          class="size-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile / tablet menu -->
+  <div
+    id="mobile-menu"
+    class="hidden max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-navy/10 bg-white xl:hidden"
+  >
+    <nav
+      class="mx-auto max-w-7xl px-4 py-2 sm:px-6"
+      aria-label="Mobile navigation"
+    >
+      <ul class="divide-y divide-navy/10 text-base font-semibold text-navy">
+        {navItems.map((item, i) => (
+          <li>
+            {item.children ? (
+              <>
+                <button
+                  type="button"
+                  class:list={[
+                    'submenu-toggle flex w-full items-center justify-between py-3 text-left hover:text-maroon',
+                    isSection(item.href) && 'text-maroon',
+                  ]}
+                  aria-expanded={String(isSection(item.href))}
+                  aria-controls={`submenu-${i}`}
+                >
+                  {item.label}
+                  <svg
+                    class:list={[
+                      'size-4 transition-transform',
+                      isSection(item.href) && 'rotate-180',
+                    ]}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d={chevronPath} />
+                  </svg>
+                </button>
+                <ul
+                  id={`submenu-${i}`}
+                  class:list={['pb-2 pl-4', !isSection(item.href) && 'hidden']}
+                >
+                  {item.children.map((child) => (
+                    <li>
+                      <a
+                        href={child.href}
+                        aria-current={isExact(child.href) ? 'page' : undefined}
+                        class:list={[
+                          'block py-2 text-sm font-medium hover:text-maroon',
+                          isExact(child.href) ? 'text-maroon' : 'text-navy/85',
+                        ]}
+                      >
+                        {child.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <a
+                href={item.href}
+                aria-current={isExact(item.href) ? 'page' : undefined}
+                class:list={[
+                  'block py-3',
+                  isExact(item.href) ? 'text-maroon' : 'hover:text-maroon',
+                ]}
+              >
+                {item.label}
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+      <a
+        href={ctaLink.href}
+        class="my-3 flex items-center justify-center gap-2 rounded-md bg-gold px-4 py-3 text-sm font-bold text-navy sm:hidden"
+      >
+        Admissions 2026–27
+        <svg
+          class="size-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14M13 6l6 6-6 6"></path>
+        </svg>
+      </a>
+      <p class="border-t border-navy/10 py-3 text-xs text-navy/70 md:hidden">
+        <a href="tel:+918026684791" class="font-semibold text-maroon">
+          +91 80 2668 4791
+        </a>
+        ·
+        <a
+          href="mailto:support@vidhyajyothischool.org"
+          class="font-semibold text-maroon"
+        >
+          support@vidhyajyothischool.org
+        </a>
+      </p>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  function setOpen(open: boolean) {
+    toggle?.setAttribute('aria-expanded', String(open));
+    toggle?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu?.classList.toggle('hidden', !open);
+  }
+
+  toggle?.addEventListener('click', () => {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+  // Top-strip campus popovers: one open at a time, closed by outside click or Escape.
+  const campusEls = [...document.querySelectorAll<HTMLElement>('[data-campus]')];
+
+  function setCampusOpen(el: HTMLElement, open: boolean) {
+    const trigger = el.querySelector<HTMLButtonElement>('[data-campus-trigger]');
+    trigger?.setAttribute('aria-expanded', String(open));
+    trigger?.querySelector('svg:last-of-type')?.classList.toggle('rotate-180', open);
+    document
+      .getElementById(trigger?.getAttribute('aria-controls') ?? '')
+      ?.classList.toggle('hidden', !open);
+  }
+
+  function closeCampuses() {
+    campusEls.forEach((el) => setCampusOpen(el, false));
+  }
+
+  campusEls.forEach((el) => {
+    el.querySelector('[data-campus-trigger]')?.addEventListener('click', () => {
+      const wasOpen =
+        el.querySelector('[data-campus-trigger]')?.getAttribute('aria-expanded') === 'true';
+      closeCampuses();
+      setCampusOpen(el, !wasOpen);
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!(e.target as Element).closest('[data-campus]')) closeCampuses();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const open = campusEls.find(
+        (el) =>
+          el.querySelector('[data-campus-trigger]')?.getAttribute('aria-expanded') === 'true',
+      );
+      if (open) {
+        closeCampuses();
+        // Return focus to the trigger so keyboard users keep their place.
+        open.querySelector<HTMLButtonElement>('[data-campus-trigger]')?.focus();
+        return;
+      }
+    }
+    if (e.key === 'Escape') {
+      setOpen(false);
+      // Closes a focused desktop dropdown by moving focus out of it.
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+    }
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('.submenu-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open));
+      btn.querySelector('svg')?.classList.toggle('rotate-180', open);
+      document.getElementById(btn.getAttribute('aria-controls') ?? '')?.classList.toggle('hidden', !open);
+    });
+  });
+</script>
