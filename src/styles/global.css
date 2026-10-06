@@ -25,6 +25,13 @@
   }
 }
 
+/* Scroll reveal: content is hidden only while JS is about to animate it (see scripts/reveal.ts). */
+html.reveal-ready [data-reveal]:not(.is-revealed),
+html.reveal-ready [data-reveal-stagger] > *:not(.is-revealed) {
+  opacity: 0;
+  visibility: hidden;
+}
+
 @layer base {
   h1,
   h2,

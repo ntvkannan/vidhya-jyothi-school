@@ -173,7 +173,7 @@ const pinPath =
 
     <nav class="hidden xl:block" aria-label="Main navigation">
       <ul class="flex items-center gap-6 text-sm font-semibold text-navy">
-        {navItems.map((item) => (
+        {navItems.map((item, index) => (
           <li class="group relative">
             <a
               href={item.href}
@@ -204,7 +204,13 @@ const pinPath =
               )}
             </a>
             {item.children && (
-              <ul class="invisible absolute top-full left-0 z-50 min-w-56 border border-navy/10 bg-white py-1.5 opacity-0 shadow-lg group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+              <ul
+                class:list={[
+                  'invisible absolute top-full z-50 min-w-56 border border-navy/10 bg-white py-1.5 opacity-0 shadow-lg group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100',
+                  // The last dropdown opens leftwards so it cannot overflow the viewport.
+                  index === navItems.length - 1 ? 'right-0' : 'left-0',
+                ]}
+              >
                 {item.children.map((child) => (
                   <li>
                     <a

@@ -65,7 +65,7 @@ const arrowBase =
   >
     <!-- Latest News & Events -->
     <div class="min-w-0">
-      <div class="flex items-center justify-between gap-4">
+      <div data-reveal class="flex items-center justify-between gap-4">
         <h2
           id="news-heading"
           class="text-2xl font-bold tracking-tight whitespace-nowrap text-navy sm:text-3xl"
@@ -92,7 +92,7 @@ const arrowBase =
         </a>
       </div>
 
-      <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <ul data-reveal-stagger class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {
           news.map((item) => (
             <li class="overflow-hidden rounded-lg border border-navy/10 bg-white shadow-sm">
@@ -130,7 +130,7 @@ const arrowBase =
       aria-roledescription="carousel"
       aria-labelledby="testimonials-heading"
     >
-      <div class="flex items-center justify-between gap-4">
+      <div data-reveal class="flex items-center justify-between gap-4">
         <h2
           id="testimonials-heading"
           class="text-2xl font-bold tracking-tight text-navy sm:text-3xl xl:text-2xl"
@@ -147,7 +147,7 @@ const arrowBase =
         </div>
       </div>
 
-      <div class="-m-1 mt-5 overflow-hidden p-1">
+      <div data-reveal class="-m-1 mt-5 overflow-hidden p-1">
         <div
           data-track
           aria-live="polite"

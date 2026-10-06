@@ -11,11 +11,12 @@ const points = [
 ---
 
 <section
-  class="relative flex flex-col bg-navy md:block md:min-h-[26rem]"
+  class="relative flex flex-col overflow-hidden bg-navy md:block md:min-h-[26rem]"
   aria-labelledby="academics-heading"
 >
   <!-- Content panel: slanted right edge on md and up -->
   <div
+    data-reveal
     class="px-4 py-10 sm:px-6 md:relative md:z-10 md:flex md:min-h-[26rem] md:w-[56%] md:flex-col md:justify-center md:bg-navy md:py-12 md:pr-20 md:pl-[max(1.5rem,calc((100vw_-_80rem)/2_+_1.5rem))] md:[clip-path:polygon(0_0,100%_0,90%_100%,0_100%)]"
   >
     <h2
@@ -81,6 +82,7 @@ const points = [
   </div>
 
   <img
+    data-reveal
     src={image}
     alt="Students studying together in a classroom"
     width="600"
