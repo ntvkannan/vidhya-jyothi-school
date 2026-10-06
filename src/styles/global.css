@@ -7,6 +7,10 @@
   --color-cream: #fff9e8;
   --color-orange: #e8531f;
 
+  /* Typography: Manrope for headings/branding, Source Sans 3 for body and UI. */
+  --font-heading: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+
   --animate-reveal: reveal 0.6s ease-out both;
 
   @keyframes reveal {
@@ -18,5 +22,14 @@
       opacity: 1;
       transform: none;
     }
+  }
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
   }
 }
