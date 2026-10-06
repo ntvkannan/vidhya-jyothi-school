@@ -1,5 +1,5 @@
 ---
-import { navItems, ctaLink } from '../data/navigation';
+import { navItems } from '../data/navigation';
 import { campuses } from '../data/campuses';
 
 // Active state is derived from the current URL, so no page sets it by hand.
@@ -147,10 +147,10 @@ const pinPath =
 
 <header class="sticky top-0 z-50 bg-white shadow-sm">
   <!-- Main header -->
-  <div class="mx-auto flex max-w-[88rem] items-center justify-between gap-4 px-4 py-3 sm:px-6 nav:gap-5">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 xl:gap-5">
     <a
       href="/"
-      class="flex shrink-0 items-center gap-3 nav:w-[17.5rem]"
+      class="flex shrink-0 items-center gap-3 xl:w-[17.5rem]"
       aria-label="Vidhya Jyothi School home"
     >
       <img
@@ -171,8 +171,8 @@ const pinPath =
       </span>
     </a>
 
-    <nav class="hidden nav:block" aria-label="Main navigation">
-      <ul class="flex items-center gap-4 text-sm font-semibold text-navy 2xl:gap-6">
+    <nav class="hidden xl:block" aria-label="Main navigation">
+      <ul class="flex items-center gap-6 text-sm font-semibold text-navy">
         {navItems.map((item) => (
           <li class="group relative">
             <a
@@ -226,29 +226,11 @@ const pinPath =
       </ul>
     </nav>
 
-    <div class="flex items-center gap-3">
-      <a
-        href={ctaLink.href}
-        class="hidden items-center gap-2 rounded-md bg-gold px-4 py-2.5 text-sm font-bold whitespace-nowrap text-navy hover:brightness-95 sm:inline-flex"
-      >
-        Admissions 2026–27
-        <svg
-          class="size-4"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M5 12h14M13 6l6 6-6 6"></path>
-        </svg>
-      </a>
+    <div class="flex items-center gap-3 xl:hidden">
       <button
         type="button"
         id="menu-toggle"
-        class="inline-flex size-10 items-center justify-center rounded-md text-navy hover:bg-navy/5 nav:hidden"
+        class="inline-flex size-10 items-center justify-center rounded-md text-navy hover:bg-navy/5 xl:hidden"
         aria-expanded="false"
         aria-controls="mobile-menu"
         aria-label="Open menu"
@@ -271,7 +253,7 @@ const pinPath =
   <!-- Mobile / tablet menu -->
   <div
     id="mobile-menu"
-    class="hidden max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-navy/10 bg-white nav:hidden"
+    class="hidden max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-navy/10 bg-white xl:hidden"
   >
     <nav
       class="mx-auto max-w-7xl px-4 py-2 sm:px-6"
@@ -343,24 +325,6 @@ const pinPath =
           </li>
         ))}
       </ul>
-      <a
-        href={ctaLink.href}
-        class="my-3 flex items-center justify-center gap-2 rounded-md bg-gold px-4 py-3 text-sm font-bold text-navy sm:hidden"
-      >
-        Admissions 2026–27
-        <svg
-          class="size-4"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M5 12h14M13 6l6 6-6 6"></path>
-        </svg>
-      </a>
       <p class="border-t border-navy/10 py-3 text-xs text-navy/70 md:hidden">
         <a href="tel:+918026684791" class="font-semibold text-maroon">
           +91 80 2668 4791
